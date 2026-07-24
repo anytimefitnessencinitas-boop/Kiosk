@@ -257,11 +257,20 @@ body {
 }
 
 .tiles-grid.memberships-grid .tile-name {
-  font-size: 28px;
+  font-size: 34px;
 }
 
 .tiles-grid.memberships-grid .tile-includes li {
-  font-size: 12px;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.tiles-grid.memberships-grid .tile-includes {
+  gap: 11px;
+}
+
+.tiles-grid.memberships-grid .benefit-red-highlight {
+  margin-top: auto;
 }
 
 .tiles-grid.memberships-grid .tile-price {
@@ -424,16 +433,20 @@ body {
 .tile.featured::after {
   content: 'MOST POPULAR';
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 22px;
+  left: -42px;
+  width: 150px;
+  transform: rotate(-45deg);
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 2px;
-  color: var(--purple-bright);
-  background: rgba(177, 126, 231, 0.18);
-  padding: 4px 10px;
-  border-radius: 100px;
-  border: 1px solid rgba(177, 126, 231, 0.4);
+  line-height: 1;
+  text-align: center;
+  color: #120d18;
+  background: var(--purple-bright);
+  padding: 7px 0;
+  border: 0;
+  box-shadow: 0 4px 16px rgba(177, 126, 231, 0.35);
   z-index: 3;
 }
 
@@ -485,7 +498,8 @@ body {
 .benefit-red-highlight {
   color: var(--red-hot) !important;
   font-weight: 700;
-  font-size: 16px !important;
+  font-size: 24px !important;
+  line-height: 1.05 !important;
   letter-spacing: 0.3px;
   text-shadow: 0 0 12px rgba(255, 59, 59, 0.4);
   margin-top: 6px;
@@ -495,6 +509,40 @@ body {
 
 .benefit-red-highlight::before {
   display: none !important;
+}
+
+.benefit-callout {
+  padding: 11px 12px !important;
+  border: 1px solid rgba(177, 126, 231, 0.5);
+  border-radius: 12px;
+  background: rgba(177, 126, 231, 0.09);
+  text-align: center;
+}
+
+.benefit-callout::before {
+  display: none !important;
+}
+
+.benefit-callout.primary {
+  background: rgba(177, 126, 231, 0.17);
+  border-color: var(--purple-bright);
+  box-shadow: 0 0 24px rgba(177, 126, 231, 0.16);
+}
+
+.benefit-callout-title {
+  display: block;
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.benefit-callout-sub {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+  line-height: 1.25;
+  color: var(--white-soft);
 }
 
 /* Price footer area on tile (matches print) */
@@ -967,6 +1015,298 @@ body.bigstretch .tile.featured::after {
 .exp-handoff .text-sub {
   font-size: 12px;
   color: var(--white-soft);
+}
+
+.expansion-card.membership-expansion {
+  max-width: 1120px;
+  padding: 34px 38px;
+}
+
+.membership-exp-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.membership-plan-panel,
+.vip-signup-panel {
+  border-radius: 18px;
+  padding: 26px;
+}
+
+.membership-plan-panel {
+  border: 1px solid rgba(177, 126, 231, 0.28);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.membership-plan-panel .exp-includes {
+  grid-template-columns: 1fr;
+  margin-bottom: 0;
+}
+
+.vip-signup-panel {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid rgba(177, 126, 231, 0.62);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(177, 126, 231, 0.24), transparent 48%),
+    rgba(177, 126, 231, 0.07);
+  box-shadow: 0 0 36px rgba(177, 126, 231, 0.14);
+}
+
+.vip-kicker {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: var(--purple-bright);
+}
+
+.vip-title {
+  margin-top: 6px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  line-height: 0.98;
+  letter-spacing: 1px;
+}
+
+.vip-subtitle {
+  margin: 10px auto 18px;
+  max-width: 520px;
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--white-soft);
+}
+
+.vip-benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.vip-benefit {
+  min-height: 82px;
+  padding: 12px 7px;
+  border-radius: 12px;
+  border: 1px solid rgba(177, 126, 231, 0.28);
+  background: rgba(2, 5, 45, 0.42);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.vip-benefit strong {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--purple-bright);
+}
+
+.vip-benefit span {
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 1.2;
+  color: var(--white);
+}
+
+.vip-credit {
+  margin-top: 16px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+.vip-credit strong {
+  font-size: 42px;
+  color: var(--purple-bright);
+  vertical-align: middle;
+}
+
+.vip-open-button {
+  margin-top: auto;
+  padding: 15px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--purple-bright), var(--purple-accent));
+  color: #100c19;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(177, 126, 231, 0.25);
+}
+
+.referral-stage {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.referral-stage-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 2px;
+}
+
+.referral-stage-subtitle {
+  margin: 7px 0 18px;
+  font-size: 14px;
+  color: var(--white-soft);
+}
+
+.referral-choice-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(310px, 0.65fr);
+  gap: 22px;
+  text-align: left;
+}
+
+.guest-list-panel,
+.qr-referral-panel {
+  border-radius: 18px;
+  border: 1px solid rgba(177, 126, 231, 0.38);
+  background: rgba(255,255,255,0.025);
+  padding: 20px;
+}
+
+.guest-list-heading,
+.qr-panel-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.guest-list-labels,
+.guest-row {
+  display: grid;
+  grid-template-columns: 34px 1.15fr 0.85fr 1.15fr;
+  gap: 8px;
+  align-items: center;
+}
+
+.guest-list-labels {
+  margin: 14px 0 6px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--purple-soft);
+}
+
+.guest-row {
+  margin-bottom: 8px;
+}
+
+.guest-row-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--purple-accent);
+  color: var(--bg-deep);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+}
+
+.guest-row input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 9px;
+  border-radius: 8px;
+  border: 1px solid rgba(177, 126, 231, 0.28);
+  outline: none;
+  background: rgba(1,4,39,0.58);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+}
+
+.guest-row input:focus {
+  border-color: var(--purple-bright);
+  box-shadow: 0 0 0 2px rgba(177,126,231,0.12);
+}
+
+.guest-list-note {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--text-mute);
+}
+
+.qr-referral-panel {
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(177,126,231,0.17), transparent 55%),
+    rgba(177,126,231,0.06);
+}
+
+.qr-panel-copy {
+  margin: 5px auto 12px;
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--white-soft);
+}
+
+.qr-crop {
+  position: relative;
+  width: 204px;
+  height: 204px;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 6px solid #fff;
+  background: #fff;
+}
+
+.qr-crop img {
+  position: absolute;
+  width: 1180px;
+  max-width: none;
+  height: 838px;
+  left: -777px;
+  top: -489px;
+}
+
+.qr-scan-label {
+  display: inline-block;
+  padding: 7px 14px;
+  background: var(--purple-accent);
+  color: var(--bg-deep);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.referral-credit-reminder {
+  margin-top: 14px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.referral-credit-reminder strong {
+  color: var(--purple-bright);
+  font-size: 30px;
+}
+
+.referral-back-button {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 3;
+  padding: 10px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(1,4,39,0.82);
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
 }
 
 /* ============ BUILDER VIEW ============ */
@@ -1557,11 +1897,11 @@ const BRANDS = {
             name: 'RECOVERY',
             featured: true,
             benefits: [
-              'Everything in Basic Access',
+              '24/7 access to AF Encinitas',
+              'Global access to 5,000+ clubs',
+              '1 Intro Stretch',
+              '1 Fitness Consultation',
               'Unlimited Evolt Scans',
-              '4 Recovery Sessions',
-              'Choose 25 min Stretch, Myofascial Release, or Theragun',
-              '2 Guest Passes per month',
               { text: 'Unlimited Red Light Therapy', highlight: 'red' }
             ],
             price: 49,
@@ -1570,14 +1910,10 @@ const BRANDS = {
             full: [
               '24/7 access to AF Encinitas',
               'Global access to 5,000+ clubs worldwide',
-              'Unlimited Evolt Scans',
-              '4 Recovery Sessions per month',
-              'Choose Stretch, Myofascial, or Theragun',
-              { text: 'Unlimited Red Light Therapy', highlight: 'red' },
-              '2 Guest Passes per month (no rollover)',
+              '1 Intro Stretch session',
               '1 Fitness Consultation',
-              'Member events access',
-              'Priority booking on recovery'
+              'Unlimited Evolt Scans',
+              { text: 'Unlimited Red Light Therapy', highlight: 'red' }
             ]
           },
           {
@@ -1585,10 +1921,17 @@ const BRANDS = {
             name: 'PREMIUM RECOVERY PLUS',
             benefits: [
               'Everything in Recovery',
-              '1 30 min Coaching Session per week',
-              'Session can be used for training, stretch, myofascial release, or Theragun',
-              '2 Guest Passes per month',
-              'Priority booking and special event discounts'
+              {
+                title: '1 Coaching Session Every Week',
+                sub: '30-minute coaching or 25-minute stretching',
+                highlight: 'callout-primary'
+              },
+              {
+                title: 'Unlimited Guest Passes',
+                sub: 'One guest per day',
+                highlight: 'callout'
+              },
+              { text: 'Unlimited Red Light Therapy', highlight: 'red' }
             ],
             price: 129,
             priceDisplay: '$129',
@@ -1597,16 +1940,9 @@ const BRANDS = {
               '24/7 access to AF Encinitas',
               'Global access to 5,000+ clubs worldwide',
               'Unlimited Evolt Scans',
-              '4 Recovery Sessions per month',
               { text: 'Unlimited Red Light Therapy', highlight: 'red' },
-              '1 30-min Coaching Session per week',
-              'Coaching: training, stretch, myofascial, or Theragun',
-              '2 Guest Passes per month (no rollover)',
-              'Priority booking access',
-              'Special event discounts',
-              'Member events access',
-              'Quarterly check-in with coach',
-              'Birthday week perks'
+              '1 30-minute Coaching Session per week or 25-minute Stretching Session',
+              'Unlimited Guest Passes — 1 per day'
             ]
           }
         ]
@@ -1763,8 +2099,8 @@ const BUILDER_OPTIONS = {
     sub: 'Recurring biweekly',
     options: [
       { id: 'm-basic', name: 'Basic Access', brand: 'ANYTIME', price: 29, type: 'recurring', desc: '24/7 + Global Access' },
-      { id: 'm-recovery', name: 'Recovery', brand: 'ANYTIME', price: 49, type: 'recurring', desc: '+ Red Light, Stretch, Guest Passes' },
-      { id: 'm-premium', name: 'Premium Recovery Plus', brand: 'ANYTIME', price: 129, type: 'recurring', desc: '+ Weekly Coaching Session' }
+      { id: 'm-recovery', name: 'Recovery', brand: 'ANYTIME', price: 49, type: 'recurring', desc: '+ Unlimited Evolt + Red Light' },
+      { id: 'm-premium', name: 'Premium Recovery Plus', brand: 'ANYTIME', price: 129, type: 'recurring', desc: '+ Weekly Coaching + Guest Passes' }
     ]
   },
   training: {
@@ -1781,6 +2117,13 @@ const BUILDER_OPTIONS = {
     options: [
       { id: 'b-25', name: '25-min Membership', brand: 'BIGSTRETCH', price: 90, type: 'recurring', desc: '$45/session, 3-mo minimum' },
       { id: 'b-50', name: '50-min Membership', brand: 'BIGSTRETCH', price: 170, type: 'recurring', desc: '$85/session, 3-mo minimum' }
+    ]
+  },
+  recoveryAddons: {
+    title: 'RECOVERY ADD-ON',
+    sub: 'Recurring biweekly',
+    options: [
+      { id: 'r-red-light-unlimited', name: 'Unlimited Red Light', brand: 'ANYTIME', price: 50, type: 'recurring', desc: 'Unlimited red light therapy add-on' }
     ]
   },
   ageless: {
@@ -1832,7 +2175,8 @@ const selections = {};
 let idleTimer = null;
 let idleSlideTimer = null;
 let idleSlideIndex = 0;
-const IDLE_TIMEOUT_MS = 30000;
+let lastActivityAt = Date.now();
+const IDLE_TIMEOUT_MS = 300000;
 
 // ============ UTILITIES ============
 function animateCountUp(element, targetValue, duration = 500) {
@@ -1857,11 +2201,18 @@ function animateCountUp(element, targetValue, duration = 500) {
 
 function resetIdleTimer() {
   clearTimeout(idleTimer);
+  lastActivityAt = Date.now();
   idleTimer = setTimeout(showIdle, IDLE_TIMEOUT_MS);
 }
 
 // ============ IDLE MODE ============
 function showIdle() {
+  const remainingIdleTime = IDLE_TIMEOUT_MS - (Date.now() - lastActivityAt);
+  if (remainingIdleTime > 0) {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(showIdle, remainingIdleTime);
+    return;
+  }
   const overlay = document.getElementById('idleOverlay');
   overlay.classList.add('active');
   idleSlideIndex = 0;
@@ -1903,6 +2254,13 @@ document.getElementById('idleOverlay').addEventListener('click', hideIdle);
 function renderBenefitItem(item) {
   if (typeof item === 'string') return `<li>${item}</li>`;
   if (item.highlight === 'red') return `<li class="benefit-red-highlight">${item.text}</li>`;
+  if (item.highlight === 'callout-primary' || item.highlight === 'callout') {
+    const primaryClass = item.highlight === 'callout-primary' ? ' primary' : '';
+    return `<li class="benefit-callout${primaryClass}">
+      <span class="benefit-callout-title">${item.title}</span>
+      <span class="benefit-callout-sub">${item.sub}</span>
+    </li>`;
+  }
   return `<li>${item.text}</li>`;
 }
 
@@ -2019,35 +2377,117 @@ function openTileExpansion(brandKey, subKey, tileId) {
 
   const expansion = document.createElement('div');
   expansion.className = 'expansion-overlay';
-  expansion.innerHTML = `
-    <div class="expansion-card">
-      <button class="expansion-close">×</button>
-      <div class="exp-eyebrow">${brand.name}</div>
-      <h2 class="exp-title">${tile.name.replace(/\n/g,' ')}</h2>
-      ${tile.priceDisplay ? `
-        <div class="exp-price-row">
-          <div class="exp-price">${tile.priceDisplay}</div>
-          <div class="exp-cadence">${tile.cadence}</div>
-        </div>
-      ` : ''}
-      <div class="exp-section-title">WHAT'S INCLUDED</div>
-      <ul class="exp-includes">
-        ${tile.full.map(f => renderBenefitItem(f)).join('')}
-      </ul>
-      <div class="exp-handoff">
-        <div class="icon">→</div>
-        <div>
-          <div class="text-title">READY TO START?</div>
-          <div class="text-sub">See the front desk to book your free intro and get started today.</div>
+  const isMembership = brandKey === 'anytime' && subKey === 'memberships';
+
+  if (isMembership) {
+    expansion.innerHTML = `
+      <div class="expansion-card membership-expansion">
+        <button class="expansion-close">×</button>
+        <div class="membership-exp-grid">
+          <section class="membership-plan-panel">
+            <div class="exp-eyebrow">YOUR MEMBERSHIP</div>
+            <h2 class="exp-title">${tile.name.replace(/\n/g,' ')}</h2>
+            <div class="exp-price-row">
+              <div class="exp-price">${tile.priceDisplay}</div>
+              <div class="exp-cadence">${tile.cadence}</div>
+            </div>
+            <div class="exp-section-title">WHAT'S INCLUDED</div>
+            <ul class="exp-includes">
+              ${tile.full.map(f => renderBenefitItem(f)).join('')}
+            </ul>
+          </section>
+          <section class="vip-signup-panel">
+            <div class="vip-kicker">AVAILABLE AT SIGNUP</div>
+            <div class="vip-title">GIFT FIVE VIP WEEKS</div>
+            <div class="vip-subtitle">Invite five friends or family members to experience Anytime Fitness with you.</div>
+            <div class="vip-benefits">
+              <div class="vip-benefit"><strong>1</strong><span>PERSONAL TRAINING SESSION</span></div>
+              <div class="vip-benefit"><strong>1</strong><span>ASSISTED STRETCH</span></div>
+              <div class="vip-benefit"><strong>1</strong><span>RED LIGHT SESSION</span></div>
+              <div class="vip-benefit"><strong>7</strong><span>DAYS OF 24/7 ACCESS</span></div>
+            </div>
+            <div class="vip-credit">EARN <strong>$100</strong> IN CLUB CREDIT FOR EVERY FRIEND WHO JOINS</div>
+            <button class="vip-open-button">SHOW THE VIP REFERRAL SHEET</button>
+          </section>
         </div>
       </div>
-    </div>
-  `;
+    `;
+  } else {
+    expansion.innerHTML = `
+      <div class="expansion-card">
+        <button class="expansion-close">×</button>
+        <div class="exp-eyebrow">${brand.name}</div>
+        <h2 class="exp-title">${tile.name.replace(/\n/g,' ')}</h2>
+        ${tile.priceDisplay ? `
+          <div class="exp-price-row">
+            <div class="exp-price">${tile.priceDisplay}</div>
+            <div class="exp-cadence">${tile.cadence}</div>
+          </div>
+        ` : ''}
+        <div class="exp-section-title">WHAT'S INCLUDED</div>
+        <ul class="exp-includes">
+          ${tile.full.map(f => renderBenefitItem(f)).join('')}
+        </ul>
+        <div class="exp-handoff">
+          <div class="icon">→</div>
+          <div>
+            <div class="text-title">READY TO START?</div>
+            <div class="text-sub">See the front desk to book your free intro and get started today.</div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
   document.body.appendChild(expansion);
 
   requestAnimationFrame(() => expansion.classList.add('open'));
 
   expansion.querySelector('.expansion-close').addEventListener('click', () => closeExpansion(expansion));
+  const vipButton = expansion.querySelector('.vip-open-button');
+  if (vipButton) {
+    vipButton.addEventListener('click', () => {
+      const card = expansion.querySelector('.expansion-card');
+      card.innerHTML = `
+        <button class="referral-back-button">← BACK TO PLAN</button>
+        <button class="expansion-close">×</button>
+        <div class="referral-stage">
+          <div class="referral-stage-title">VIP MEMBERSHIP GUEST LIST</div>
+          <div class="referral-stage-subtitle">Add up to five friends below—or scan the QR code to send VIP passes from your phone.</div>
+          <div class="referral-choice-grid">
+            <section class="guest-list-panel">
+              <div class="guest-list-heading">WHO WOULD YOU LIKE TO INVITE?</div>
+              <div class="guest-list-labels">
+                <span></span><span>NAME</span><span>PHONE</span><span>EMAIL</span>
+              </div>
+              ${[1,2,3,4,5].map(number => `
+                <div class="guest-row">
+                  <div class="guest-row-number">${number}</div>
+                  <input type="text" aria-label="Friend ${number} name" placeholder="Friend's name">
+                  <input type="tel" aria-label="Friend ${number} phone" placeholder="Phone">
+                  <input type="email" aria-label="Friend ${number} email" placeholder="Email">
+                </div>
+              `).join('')}
+              <div class="guest-list-note">VIP Weeks are available to gift at signup. The front desk can help send invitations from this list.</div>
+            </section>
+            <section class="qr-referral-panel">
+              <div class="qr-panel-heading">PREFER TO USE YOUR PHONE?</div>
+              <div class="qr-panel-copy">Scan to open the digital guest sheet and instantly share VIP Week passes with friends and family.</div>
+              <div class="qr-crop">
+                <img src="referral-sheet.png" alt="QR code for the digital VIP guest sheet">
+              </div>
+              <div class="qr-scan-label">SCAN HERE</div>
+              <div class="referral-credit-reminder">EARN <strong>$100</strong><br>IN CLUB CREDIT FOR EVERY REFERRAL WHO JOINS</div>
+            </section>
+          </div>
+        </div>
+      `;
+      card.querySelector('.referral-back-button').addEventListener('click', () => {
+        closeExpansion(expansion);
+        setTimeout(() => openTileExpansion(brandKey, subKey, tileId), 380);
+      });
+      card.querySelector('.expansion-close').addEventListener('click', () => closeExpansion(expansion));
+    });
+  }
   expansion.addEventListener('click', (e) => {
     if (e.target === expansion) closeExpansion(expansion);
   });
