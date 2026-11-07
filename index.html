@@ -250,6 +250,9 @@ body {
 .tiles-grid.memberships-grid {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
+  width: 100%;
+  max-height: 540px;
+  margin: auto 0;
 }
 
 .tiles-grid.memberships-grid .tile {
@@ -284,6 +287,9 @@ body {
 .tiles-grid.training-grid {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr 1fr;
+  width: 100%;
+  max-height: 520px;
+  margin: auto 0;
 }
 
 .tiles-grid.training-grid .tile {
@@ -335,6 +341,406 @@ body {
   margin-top: 10px;
   padding-top: 10px;
   gap: 10px;
+}
+
+/* ============ PERSONAL TRAINING GUIDED FLOW ============ */
+.pt-flow-shell {
+  flex: 1;
+  min-height: 0;
+  width: min(1080px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.pt-progress {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0 auto 14px;
+  width: min(720px, 100%);
+}
+
+.pt-progress-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 34px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
+  color: var(--text-mute);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  transition: all 0.25s ease;
+}
+
+.pt-progress-step span {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  font-size: 10px;
+}
+
+.pt-progress-step.active,
+.pt-progress-step.complete {
+  color: var(--white);
+  border-color: rgba(177,126,231,0.5);
+  background: rgba(177,126,231,0.12);
+}
+
+.pt-progress-step.active span,
+.pt-progress-step.complete span {
+  color: var(--bg-deep);
+  background: var(--purple-bright);
+}
+
+.pt-stage {
+  flex: 1;
+  min-height: 0;
+  max-height: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--purple-accent) var(--bg-card);
+  scrollbar-width: thin;
+  padding: 4px 6px 12px;
+}
+
+.pt-stage > * { flex-shrink: 0; }
+
+.pt-stage-heading {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.pt-stage-heading h2 {
+  margin: 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px;
+  letter-spacing: 2px;
+  color: var(--white);
+}
+
+.pt-stage-heading p {
+  margin: 5px 0 0;
+  color: var(--text-mute);
+  font-size: 13px;
+}
+
+.pt-choice-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.pt-choice-grid.frequency { grid-template-columns: repeat(3, 1fr); }
+.pt-choice-grid.duration { grid-template-columns: repeat(2, 1fr); }
+.pt-choice-grid.three-up { grid-template-columns: repeat(3, 1fr); }
+.pt-choice-grid.two-up { grid-template-columns: repeat(2, 1fr); }
+.pt-choice-grid.two-up .pt-choice { min-height: 190px; }
+
+#builderOptions {
+  justify-content: flex-start;
+  overflow-y: auto;
+  padding: 2px 8px 8px;
+}
+
+.pt-choice {
+  min-height: 225px;
+  padding: 24px 22px;
+  border: 1.5px solid var(--tile-border);
+  border-radius: 22px;
+  color: var(--white);
+  background: linear-gradient(180deg, var(--bg-card-grad-top), var(--bg-card-grad-bot));
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.pt-choice:hover,
+.pt-choice:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--purple-bright);
+  box-shadow: 0 0 45px rgba(177,126,231,0.23), 0 18px 45px rgba(0,0,0,0.55);
+  outline: none;
+}
+
+.pt-choice.recommended {
+  border-color: var(--purple-bright);
+  background: linear-gradient(180deg, rgba(177,126,231,0.18), var(--bg-card-grad-bot));
+}
+
+.pt-choice-kicker {
+  color: var(--purple-soft);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+}
+
+.pt-choice-number {
+  margin: 8px 0 2px;
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 76px;
+  line-height: 0.9;
+}
+
+.pt-choice-number.price {
+  font-size: 64px;
+}
+
+.pt-choice-label {
+  color: var(--purple-bright);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+
+.pt-choice-description {
+  max-width: 250px;
+  margin-top: 12px;
+  color: var(--white-soft);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.pt-back-button,
+.pt-result-action {
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 100px;
+  color: var(--white-soft);
+  background: rgba(255,255,255,0.04);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.pt-back-button {
+  align-self: center;
+  margin-top: 14px;
+}
+
+.pt-result-card {
+  width: min(860px, 100%);
+  margin: 0 auto;
+  padding: 24px 34px;
+  border: 2px solid var(--purple-bright);
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(177,126,231,0.18), rgba(22,16,31,0.98) 55%);
+  box-shadow: 0 0 60px rgba(177,126,231,0.24), 0 22px 55px rgba(0,0,0,0.55);
+  text-align: center;
+  animation: planReveal 180ms ease-out;
+}
+
+@keyframes planReveal {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.plan-next-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--tile-border-hot);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--white-soft);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.plan-next-step span {
+  color: var(--purple-bright);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+.pt-result-action:focus-visible,
+.pt-back-button:focus-visible,
+.pt-downsell-option:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 3px;
+}
+
+.pt-result-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 18px;
+  margin: 16px auto 0;
+  padding: 14px 18px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  background: rgba(0,0,0,0.16);
+  text-align: left;
+}
+
+.pt-result-benefit {
+  color: var(--white-soft);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.pt-result-benefit::before {
+  content: '✓';
+  margin-right: 7px;
+  color: var(--purple-bright);
+  font-weight: 800;
+}
+
+.pt-downsell {
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid rgba(255,255,255,0.11);
+}
+
+.pt-downsell-title {
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 3px;
+}
+
+.pt-downsell-subtitle {
+  margin-top: 3px;
+  color: var(--text-mute);
+  font-size: 10px;
+}
+
+.pt-downsell-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 9px;
+}
+
+.pt-downsell-option {
+  min-height: 52px;
+  padding: 9px 13px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  color: var(--white-soft);
+  background: rgba(255,255,255,0.035);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1.6px;
+  cursor: pointer;
+}
+
+.pt-downsell-option strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--white);
+  font-size: 15px;
+}
+
+.pt-start-over-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.pt-result-selection {
+  color: var(--purple-soft);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+}
+
+.pt-result-price {
+  margin: 8px 0 0;
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 78px;
+  line-height: 0.95;
+}
+
+.pt-result-price-label {
+  color: var(--purple-bright);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  letter-spacing: 5px;
+}
+
+.pt-result-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.pt-result-detail {
+  padding: 11px 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.035);
+}
+
+.pt-result-detail strong,
+.pt-result-detail span { display: block; }
+.pt-result-detail strong { color: var(--white); font-size: 15px; }
+.pt-result-detail span { margin-top: 3px; color: var(--text-mute); font-size: 9px; letter-spacing: 1.4px; text-transform: uppercase; }
+
+.pt-result-note {
+  margin-top: 14px;
+  color: var(--white-soft);
+  font-size: 11px;
+}
+
+.pt-result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 16px;
+}
+
+.pt-result-action.primary {
+  color: var(--bg-deep);
+  border-color: var(--purple-bright);
+  background: var(--purple-bright);
+}
+
+@media (max-width: 820px) {
+  .pt-choice { min-height: 190px; padding: 18px 14px; }
+  .pt-choice-number { font-size: 60px; }
+  .pt-choice-description { font-size: 11px; margin-top: 8px; }
+  .pt-result-price { font-size: 62px; }
+  .pt-result-benefits { grid-template-columns: 1fr; }
+}
+
+@media (max-height: 740px) {
+  .header { padding-top: 12px; }
+  .brand-lockup { height: 44px; }
+  .tabs { padding-top: 10px; }
+  .sub-tabs { padding-top: 8px; }
+  .main { padding-top: 10px; padding-bottom: 8px; }
+  .screen-title { font-size: 30px; }
+  .screen-header { margin-bottom: 8px; }
+  .pt-progress { margin-bottom: 8px; }
+  .pt-choice { min-height: 170px; padding: 18px 16px; }
+  .pt-choice-grid.two-up .pt-choice { min-height: 170px; }
+  .pt-stage-heading h2 { font-size: 26px; }
+  .pt-result-card { padding: 18px 24px; }
+  .pt-result-price { font-size: 62px; }
 }
 
 .tiles-grid.bigstretch-grid {
@@ -1794,6 +2200,28 @@ body.bigstretch .tile.featured::after {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 820px) {
+  .footer {
+    gap: 16px;
+    align-items: flex-start;
+    padding-bottom: 30px;
+    letter-spacing: 1.5px;
+  }
+  .footer > div { max-width: 48%; }
+  .footer .cta { text-align: right; }
+  body .proto-badge { bottom: 2px; padding: 2px 8px; }
+}
+
 /* PROTO BADGE */
 .proto-badge {
   position: fixed;
@@ -1831,7 +2259,8 @@ body.bigstretch .tile.featured::after {
 
   <div class="sub-tabs" id="subTabs">
     <button class="sub-tab active" data-sub="memberships">MEMBERSHIPS</button>
-    <button class="sub-tab" data-sub="training">TRAINING & STRETCHING</button>
+    <button class="sub-tab" data-sub="personalTraining">PERSONAL TRAINING</button>
+    <button class="sub-tab" data-sub="stretching">ASSISTED STRETCHING</button>
   </div>
 
   <main class="main" id="main"></main>
@@ -2172,6 +2601,45 @@ const AF_LOCKUP = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXwAAAB4CAYAAAD
 let currentBrand = 'anytime';
 let currentSubTab = 'memberships';
 const selections = {};
+const PERSONAL_TRAINING_RATES = {
+  30: { weeklySessionRate: 49.5, biweeklyBase: 99 },
+  60: { weeklySessionRate: 90, biweeklyBase: 180 }
+};
+const PERSONAL_TRAINING_FREQUENCIES = [2, 3, 4];
+const PERSONAL_TRAINING_DURATIONS = [30, 60];
+let personalTrainingStep = 1;
+let personalTrainingFrequency = null;
+let personalTrainingDuration = null;
+const PERSONAL_TRAINING_SINGLE_PRICES = { 30: 60, 60: 110 };
+let membershipStep = 1;
+let selectedMembership = null;
+const STRETCH_PRICES = {
+  25: {
+    membership: { price: 90, label: 'BIWEEKLY', perSession: 45 },
+    sixPack: { price: 299, label: '6-PACK', perSession: 50 },
+    single: { price: 55, label: 'ONE SESSION', perSession: 55 }
+  },
+  50: {
+    membership: { price: 170, label: 'BIWEEKLY', perSession: 85 },
+    sixPack: { price: 540, label: '6-PACK', perSession: 90 },
+    single: { price: 95, label: 'ONE SESSION', perSession: 95 }
+  }
+};
+let stretchStep = 1;
+let stretchDuration = null;
+let stretchPlan = null;
+const BIGSTRETCH_FREQUENCIES = [2, 3, 4];
+const BIGSTRETCH_DURATIONS = [25, 50];
+const BIGSTRETCH_MEMBERSHIP_RATES = {
+  25: { weeklySessionRate: 45, biweeklyBase: 90, single: 55, sixPack: 299, sixPackSessionRate: 50 },
+  50: { weeklySessionRate: 85, biweeklyBase: 170, single: 95, sixPack: 540, sixPackSessionRate: 90 }
+};
+let bigStretchStep = 1;
+let bigStretchFrequency = null;
+let bigStretchDuration = null;
+let agelessStep = 1;
+let selectedAgelessPlan = null;
+let builderStep = 0;
 let idleTimer = null;
 let idleSlideTimer = null;
 let idleSlideIndex = 0;
@@ -2180,6 +2648,10 @@ const IDLE_TIMEOUT_MS = 300000;
 
 // ============ UTILITIES ============
 function animateCountUp(element, targetValue, duration = 500) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    element.textContent = targetValue;
+    return;
+  }
   const startTime = performance.now();
   const isDollar = String(targetValue).includes('$');
   const numeric = parseFloat(String(targetValue).replace(/[^0-9.-]/g, ''));
@@ -2364,6 +2836,673 @@ function renderBrandView(brandKey, subKey = null) {
   document.getElementById('footerCta').textContent = 'TAP ANY TIER FOR DETAILS';
 }
 
+// ============ SHARED GUIDED FLOW HELPERS ============
+function renderGuidedProgress(labels, activeStep) {
+  return `<div class="pt-progress" style="grid-template-columns: repeat(${labels.length}, 1fr)">${labels.map((label, index) => {
+    const step = index + 1;
+    const stateClass = step === activeStep ? 'active' : (step < activeStep ? 'complete' : '');
+    return `<div class="pt-progress-step ${stateClass}"><span>${step < activeStep ? '✓' : step}</span>${label}</div>`;
+  }).join('')}</div>`;
+}
+
+function resultBenefitText(item) {
+  if (typeof item === 'string') return item;
+  if (item.title) return `${item.title}: ${item.sub || ''}`;
+  return item.text || '';
+}
+
+function renderResultBenefits(items) {
+  return `<div class="pt-result-benefits">${items.map(item => `<div class="pt-result-benefit">${resultBenefitText(item)}</div>`).join('')}</div>`;
+}
+
+function renderPlanNextStep(action = 'get started') {
+  return `<p class="plan-next-step"><span>NEXT STEP</span><strong>See the front desk to ${action}.</strong></p>`;
+}
+
+function setGuidedBrand(brandKey) {
+  document.body.classList.remove('ageless', 'bigstretch');
+  if (brandKey === 'ageless') document.body.classList.add('ageless');
+  if (brandKey === 'bigstretch') document.body.classList.add('bigstretch');
+}
+
+// ============ MEMBERSHIP GUIDED FLOW ============
+function renderMembershipFlow() {
+  setGuidedBrand('anytime');
+  const plans = BRANDS.anytime.sub.memberships.tiles;
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <div class="screen-header stagger-in">
+      <div class="screen-title">CHOOSE YOUR MEMBERSHIP</div>
+      <div class="screen-subtitle-wrap"><span class="screen-subtitle">START WITH WHAT YOU WANT INCLUDED</span></div>
+    </div>
+    <div class="pt-flow-shell">
+      ${renderGuidedProgress(['MEMBERSHIP', 'PLAN DETAILS'], membershipStep)}
+      <div class="pt-stage" id="membershipStage"></div>
+    </div>
+  `;
+  renderMembershipStep();
+  document.getElementById('footerLegal').textContent = '12-MONTH MEMBERSHIP OPTIONS • BILLED BIWEEKLY';
+}
+
+function renderMembershipStep() {
+  const stage = document.getElementById('membershipStage');
+  const plans = BRANDS.anytime.sub.memberships.tiles;
+  if (!stage) return;
+
+  if (membershipStep === 1) {
+    const descriptions = {
+      basic: 'Straightforward 24/7 gym access with global club access.',
+      recovery: 'Adds unlimited Evolt scans and unlimited red light therapy.',
+      premium: 'Adds weekly coaching or stretching plus unlimited guest passes.'
+    };
+    stage.innerHTML = `
+      <div class="pt-stage-heading"><h2>WHAT KIND OF SUPPORT DO YOU WANT?</h2><p>Choose a plan to see everything included.</p></div>
+      <div class="pt-choice-grid three-up">
+        ${plans.map(plan => `
+          <button class="pt-choice ${plan.featured ? 'recommended' : ''}" data-membership="${plan.id}" type="button">
+            <span class="pt-choice-kicker">${plan.featured ? 'MOST POPULAR' : '12-MONTH PLAN'}</span>
+            <span class="pt-choice-number price">${plan.priceDisplay}</span>
+            <span class="pt-choice-label">BIWEEKLY</span>
+            <span class="pt-choice-description">${plan.name.replace(/\n/g, ' ')}. ${descriptions[plan.id]}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="pt-start-over-row"><button class="pt-result-action" id="membershipReset" type="button">START OVER</button></div>
+    `;
+    stage.querySelectorAll('[data-membership]').forEach(button => {
+      button.addEventListener('click', () => {
+        selectedMembership = button.dataset.membership;
+        membershipStep = 2;
+        renderMembershipFlow();
+      });
+    });
+    document.getElementById('membershipReset').addEventListener('click', () => {
+      selectedMembership = null;
+      membershipStep = 1;
+      renderMembershipFlow();
+    });
+    document.getElementById('footerCta').textContent = 'STEP 1 OF 2 • CHOOSE A MEMBERSHIP';
+    return;
+  }
+
+  const plan = plans.find(item => item.id === selectedMembership) || plans[0];
+  stage.innerHTML = `
+    <div class="pt-result-card">
+      <div class="pt-result-selection">${plan.name.replace(/\n/g, ' ')}</div>
+      <div class="pt-result-price">${plan.priceDisplay}</div>
+      <div class="pt-result-price-label">BILLED BIWEEKLY</div>
+      ${renderPlanNextStep('join')}
+      <div class="pt-result-details">
+        <div class="pt-result-detail"><strong>12 months</strong><span>Membership term</span></div>
+        <div class="pt-result-detail"><strong>24/7</strong><span>Club access</span></div>
+        <div class="pt-result-detail"><strong>5,000+</strong><span>Clubs worldwide</span></div>
+      </div>
+      ${renderResultBenefits(plan.full)}
+      <div class="pt-result-actions">
+        <button class="pt-result-action" id="membershipBack" type="button">← BACK TO MEMBERSHIPS</button>
+        <button class="pt-result-action" id="membershipStartOver" type="button">START OVER</button>
+      </div>
+    </div>
+  `;
+  ['membershipBack', 'membershipStartOver'].forEach(id => {
+    document.getElementById(id).addEventListener('click', () => {
+      selectedMembership = null;
+      membershipStep = 1;
+      renderMembershipFlow();
+    });
+  });
+  document.getElementById('footerCta').textContent = 'STEP 2 OF 2 • SEE THE FRONT DESK TO JOIN';
+}
+
+// ============ BIGSTRETCH FREQUENCY GUIDED FLOW ============
+function renderBigStretchFlow() {
+  setGuidedBrand('bigstretch');
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <div class="screen-header stagger-in">
+      <div class="screen-title">BUILD YOUR STRETCH PLAN</div>
+      <div class="screen-subtitle-wrap"><span class="screen-subtitle">STRETCH • MYOFASCIAL • THERAGUN</span></div>
+    </div>
+    <div class="pt-flow-shell">
+      ${renderGuidedProgress(['FREQUENCY', 'SESSION LENGTH', 'WEEKLY PRICE'], bigStretchStep)}
+      <div class="pt-stage" id="bigStretchStage"></div>
+    </div>
+  `;
+  renderBigStretchStep();
+  document.getElementById('footerLegal').textContent = 'BIGSTRETCH MEMBERSHIPS • BILLED BIWEEKLY • 3-MONTH MINIMUM';
+}
+
+function renderBigStretchStep() {
+  const stage = document.getElementById('bigStretchStage');
+  if (!stage) return;
+
+  if (bigStretchStep === 1) {
+    const descriptions = {
+      2: 'A consistent recovery rhythm for mobility, flexibility, and feeling better each week.',
+      3: 'More frequent mobility work to build momentum and support an active routine.',
+      4: 'Maximum weekly support for ambitious mobility and recovery goals.'
+    };
+    stage.innerHTML = `
+      <div class="pt-stage-heading"><h2>HOW OFTEN DO YOU WANT TO STRETCH?</h2><p>Choose the weekly schedule that matches your recovery goals.</p></div>
+      <div class="pt-choice-grid frequency">
+        ${BIGSTRETCH_FREQUENCIES.map(frequency => `
+          <button class="pt-choice ${frequency === 3 ? 'recommended' : ''}" data-bigstretch-frequency="${frequency}" type="button">
+            <span class="pt-choice-kicker">${frequency === 3 ? 'MOST POPULAR' : 'WEEKLY SCHEDULE'}</span>
+            <span class="pt-choice-number">${frequency}</span>
+            <span class="pt-choice-label">TIMES PER WEEK</span>
+            <span class="pt-choice-description">${descriptions[frequency]}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="pt-start-over-row"><button class="pt-result-action" id="bigStretchResetFromFrequency" type="button">START OVER</button></div>
+    `;
+    stage.querySelectorAll('[data-bigstretch-frequency]').forEach(button => {
+      button.addEventListener('click', () => {
+        bigStretchFrequency = Number(button.dataset.bigstretchFrequency);
+        bigStretchStep = 2;
+        renderBigStretchFlow();
+      });
+    });
+    document.getElementById('bigStretchResetFromFrequency').addEventListener('click', () => {
+      bigStretchFrequency = null;
+      bigStretchDuration = null;
+      bigStretchStep = 1;
+      renderBigStretchFlow();
+    });
+    document.getElementById('footerCta').textContent = 'STEP 1 OF 3 • CHOOSE 2, 3, OR 4 TIMES PER WEEK';
+    return;
+  }
+
+  if (bigStretchStep === 2) {
+    const descriptions = {
+      25: 'Targeted mobility and recovery that fits into a busy schedule.',
+      50: 'A deeper full-body session with more time for mobility and recovery work.'
+    };
+    stage.innerHTML = `
+      <div class="pt-stage-heading"><h2>HOW LONG SHOULD EACH SESSION BE?</h2><p>You selected ${bigStretchFrequency} times per week. Now choose your session length.</p></div>
+      <div class="pt-choice-grid duration">
+        ${BIGSTRETCH_DURATIONS.map(duration => `
+          <button class="pt-choice ${duration === 25 ? 'recommended' : ''}" data-bigstretch-duration="${duration}" type="button">
+            <span class="pt-choice-kicker">${duration === 25 ? 'EFFICIENT & FOCUSED' : 'FULL-BODY SESSION'}</span>
+            <span class="pt-choice-number">${duration}</span>
+            <span class="pt-choice-label">MINUTES</span>
+            <span class="pt-choice-description">${descriptions[duration]}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="pt-result-actions">
+        <button class="pt-result-action" id="bigStretchBackToFrequency" type="button">← BACK TO FREQUENCY</button>
+        <button class="pt-result-action" id="bigStretchResetFromDuration" type="button">START OVER</button>
+      </div>
+    `;
+    stage.querySelectorAll('[data-bigstretch-duration]').forEach(button => {
+      button.addEventListener('click', () => {
+        bigStretchDuration = Number(button.dataset.bigstretchDuration);
+        bigStretchStep = 3;
+        renderBigStretchFlow();
+      });
+    });
+    document.getElementById('bigStretchBackToFrequency').addEventListener('click', () => {
+      bigStretchStep = 1;
+      bigStretchDuration = null;
+      renderBigStretchFlow();
+    });
+    document.getElementById('bigStretchResetFromDuration').addEventListener('click', () => {
+      bigStretchFrequency = null;
+      bigStretchDuration = null;
+      bigStretchStep = 1;
+      renderBigStretchFlow();
+    });
+    document.getElementById('footerCta').textContent = 'STEP 2 OF 3 • CHOOSE 25 OR 50 MINUTES';
+    return;
+  }
+
+  const rate = BIGSTRETCH_MEMBERSHIP_RATES[bigStretchDuration];
+  const weeklyPrice = rate.weeklySessionRate * bigStretchFrequency;
+  const biweeklyPrice = rate.biweeklyBase * bigStretchFrequency;
+  const billingCycleSessions = bigStretchFrequency * 2;
+  stage.innerHTML = `
+    <div class="pt-result-card">
+      <div class="pt-result-selection">${bigStretchFrequency} TIMES PER WEEK • ${bigStretchDuration}-MINUTE SESSIONS</div>
+      <div class="pt-result-price">$${formatPersonalTrainingPrice(weeklyPrice)}</div>
+      <div class="pt-result-price-label">PER WEEK</div>
+      ${renderPlanNextStep()}
+      <div class="pt-result-details">
+        <div class="pt-result-detail"><strong>$${rate.weeklySessionRate}</strong><span>Per session</span></div>
+        <div class="pt-result-detail"><strong>$${formatPersonalTrainingPrice(biweeklyPrice)}</strong><span>Billed biweekly</span></div>
+        <div class="pt-result-detail"><strong>${billingCycleSessions} sessions</strong><span>Every 2 weeks</span></div>
+      </div>
+      <div class="pt-result-note">BigStretch memberships have a 3-month minimum. Choose assisted stretch, myofascial release, or Theragun at the same rate.</div>
+      <div class="pt-downsell">
+        <div class="pt-downsell-title">NEED A MORE FLEXIBLE START?</div>
+        <div class="pt-downsell-subtitle">Keep the membership recommendation while offering verified package and single-session choices.</div>
+        <div class="pt-downsell-options">
+          <div class="pt-downsell-option"><strong>ONE ${bigStretchDuration}-MINUTE SESSION • $${rate.single}</strong>No recurring commitment</div>
+          <div class="pt-downsell-option"><strong>6-PACK • $${rate.sixPack}</strong>$${rate.sixPackSessionRate} per session</div>
+        </div>
+      </div>
+      <div class="pt-result-actions">
+        <button class="pt-result-action" id="bigStretchChangeLength" type="button">← CHANGE SESSION LENGTH</button>
+        <button class="pt-result-action" id="bigStretchStartOver" type="button">START OVER</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('bigStretchChangeLength').addEventListener('click', () => {
+    bigStretchDuration = null;
+    bigStretchStep = 2;
+    renderBigStretchFlow();
+  });
+  document.getElementById('bigStretchStartOver').addEventListener('click', () => {
+    bigStretchFrequency = null;
+    bigStretchDuration = null;
+    bigStretchStep = 1;
+    renderBigStretchFlow();
+  });
+  document.getElementById('footerCta').textContent = 'STEP 3 OF 3 • SEE THE FRONT DESK TO GET STARTED';
+}
+
+// ============ ASSISTED STRETCHING GUIDED FLOW ============
+function renderStretchFlow(brandKey = 'bigstretch') {
+  setGuidedBrand(brandKey === 'bigstretch' ? 'bigstretch' : 'anytime');
+  const title = brandKey === 'bigstretch' ? 'BUILD YOUR STRETCH PLAN' : 'ASSISTED STRETCHING';
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <div class="screen-header stagger-in">
+      <div class="screen-title">${title}</div>
+      <div class="screen-subtitle-wrap"><span class="screen-subtitle">STRETCH • MYOFASCIAL • THERAGUN</span></div>
+    </div>
+    <div class="pt-flow-shell">
+      ${renderGuidedProgress(['SESSION LENGTH', 'PURCHASE STYLE', 'YOUR PRICE'], stretchStep)}
+      <div class="pt-stage" id="stretchStage"></div>
+    </div>
+  `;
+  renderStretchStep(brandKey);
+  document.getElementById('footerLegal').textContent = 'ALL THREE SERVICES ARE PRICED THE SAME • MEMBERSHIPS HAVE A 3-MONTH MINIMUM';
+}
+
+function renderStretchStep(brandKey) {
+  const stage = document.getElementById('stretchStage');
+  if (!stage) return;
+
+  if (stretchStep === 1) {
+    stage.innerHTML = `
+      <div class="pt-stage-heading"><h2>HOW LONG SHOULD EACH SESSION BE?</h2><p>Choose the session length that fits your goals and schedule.</p></div>
+      <div class="pt-choice-grid two-up">
+        <button class="pt-choice recommended" data-stretch-duration="25" type="button">
+          <span class="pt-choice-kicker">EFFICIENT & FOCUSED</span><span class="pt-choice-number">25</span><span class="pt-choice-label">MINUTES</span>
+          <span class="pt-choice-description">Targeted mobility and recovery that fits a busy schedule.</span>
+        </button>
+        <button class="pt-choice" data-stretch-duration="50" type="button">
+          <span class="pt-choice-kicker">FULL-BODY SESSION</span><span class="pt-choice-number">50</span><span class="pt-choice-label">MINUTES</span>
+          <span class="pt-choice-description">More time for deeper, full-body mobility and recovery work.</span>
+        </button>
+      </div>
+      <div class="pt-start-over-row"><button class="pt-result-action" id="stretchReset" type="button">START OVER</button></div>
+    `;
+    stage.querySelectorAll('[data-stretch-duration]').forEach(button => {
+      button.addEventListener('click', () => {
+        stretchDuration = Number(button.dataset.stretchDuration);
+        stretchStep = 2;
+        renderStretchFlow(brandKey);
+      });
+    });
+    document.getElementById('stretchReset').addEventListener('click', () => {
+      stretchDuration = null;
+      stretchPlan = null;
+      stretchStep = 1;
+      renderStretchFlow(brandKey);
+    });
+    document.getElementById('footerCta').textContent = 'STEP 1 OF 3 • CHOOSE 25 OR 50 MINUTES';
+    return;
+  }
+
+  const prices = STRETCH_PRICES[stretchDuration];
+  if (stretchStep === 2) {
+    const choices = [
+      { id: 'membership', kicker: 'BEST ONGOING VALUE', amount: `$${prices.membership.price}`, label: 'BIWEEKLY', description: `$${prices.membership.perSession} per session with a 3-month minimum.`, recommended: true },
+      { id: 'sixPack', kicker: 'FLEXIBLE PACKAGE', amount: `$${prices.sixPack.price}`, label: '6-PACK', description: `$${prices.sixPack.perSession} per session with no recurring membership.` },
+      { id: 'single', kicker: 'TRY ONE FIRST', amount: `$${prices.single.price}`, label: 'ONE SESSION', description: 'The easiest way to start with no ongoing commitment.' }
+    ];
+    stage.innerHTML = `
+      <div class="pt-stage-heading"><h2>HOW WOULD YOU LIKE TO START?</h2><p>You selected ${stretchDuration} minutes. Membership comes first, with flexible downsell options beside it.</p></div>
+      <div class="pt-choice-grid three-up">
+        ${choices.map(choice => `
+          <button class="pt-choice ${choice.recommended ? 'recommended' : ''}" data-stretch-plan="${choice.id}" type="button">
+            <span class="pt-choice-kicker">${choice.kicker}</span><span class="pt-choice-number price">${choice.amount}</span><span class="pt-choice-label">${choice.label}</span>
+            <span class="pt-choice-description">${choice.description}</span>
+          </button>
+        `).join('')}
+      </div>
+      <button class="pt-back-button" id="stretchBackToDuration" type="button">← BACK TO SESSION LENGTH</button>
+    `;
+    stage.querySelectorAll('[data-stretch-plan]').forEach(button => {
+      button.addEventListener('click', () => {
+        stretchPlan = button.dataset.stretchPlan;
+        stretchStep = 3;
+        renderStretchFlow(brandKey);
+      });
+    });
+    document.getElementById('stretchBackToDuration').addEventListener('click', () => {
+      stretchDuration = null;
+      stretchPlan = null;
+      stretchStep = 1;
+      renderStretchFlow(brandKey);
+    });
+    document.getElementById('footerCta').textContent = 'STEP 2 OF 3 • CHOOSE MEMBERSHIP, 6-PACK, OR SINGLE';
+    return;
+  }
+
+  const plan = prices[stretchPlan];
+  const planNames = { membership: 'STRETCH MEMBERSHIP', sixPack: 'FLEXIBLE 6-PACK', single: 'SINGLE SESSION' };
+  const detailThree = stretchPlan === 'membership' ? '<strong>3 months</strong><span>Minimum term</span>' : (stretchPlan === 'sixPack' ? '<strong>6 sessions</strong><span>Package total</span>' : '<strong>No contract</strong><span>One-time visit</span>');
+  const benefitItems = stretchPlan === 'membership'
+    ? ['Assisted stretch, myofascial, or Theragun', 'Two sessions every two weeks', `$${plan.perSession} per session`, 'Consistent mobility and recovery support']
+    : stretchPlan === 'sixPack'
+      ? ['Six flexible sessions', 'Assisted stretch, myofascial, or Theragun', `$${plan.perSession} per session`, brandKey === 'bigstretch' ? '90-day package expiration' : 'See the front desk for package terms']
+      : ['One flexible session', 'Assisted stretch, myofascial, or Theragun', 'No recurring membership', 'A simple way to try the service'];
+  const alternatives = ['membership', 'sixPack', 'single'].filter(id => id !== stretchPlan);
+  stage.innerHTML = `
+    <div class="pt-result-card">
+      <div class="pt-result-selection">${stretchDuration}-MINUTE ${planNames[stretchPlan]}</div>
+      <div class="pt-result-price">$${plan.price}</div>
+      <div class="pt-result-price-label">${plan.label}</div>
+      ${renderPlanNextStep()}
+      <div class="pt-result-details">
+        <div class="pt-result-detail"><strong>$${plan.perSession}</strong><span>Per session</span></div>
+        <div class="pt-result-detail"><strong>${stretchDuration} minutes</strong><span>Session length</span></div>
+        <div class="pt-result-detail">${detailThree}</div>
+      </div>
+      ${renderResultBenefits(benefitItems)}
+      <div class="pt-downsell">
+        <div class="pt-downsell-title">WANT A DIFFERENT COMMITMENT LEVEL?</div>
+        <div class="pt-downsell-options">
+          ${alternatives.map(id => `<button class="pt-downsell-option" data-stretch-alternative="${id}" type="button"><strong>${planNames[id]}</strong>$${prices[id].price} • ${prices[id].label}</button>`).join('')}
+        </div>
+      </div>
+      <div class="pt-result-actions">
+        <button class="pt-result-action" id="stretchBackToPlans" type="button">← BACK TO OPTIONS</button>
+        <button class="pt-result-action" id="stretchStartOver" type="button">START OVER</button>
+      </div>
+    </div>
+  `;
+  stage.querySelectorAll('[data-stretch-alternative]').forEach(button => {
+    button.addEventListener('click', () => {
+      stretchPlan = button.dataset.stretchAlternative;
+      renderStretchFlow(brandKey);
+    });
+  });
+  document.getElementById('stretchBackToPlans').addEventListener('click', () => {
+    stretchPlan = null;
+    stretchStep = 2;
+    renderStretchFlow(brandKey);
+  });
+  document.getElementById('stretchStartOver').addEventListener('click', () => {
+    stretchDuration = null;
+    stretchPlan = null;
+    stretchStep = 1;
+    renderStretchFlow(brandKey);
+  });
+  document.getElementById('footerCta').textContent = 'STEP 3 OF 3 • SEE THE FRONT DESK TO GET STARTED';
+}
+
+// ============ AGELESS GUIDED FLOW ============
+function renderAgelessFlow() {
+  setGuidedBrand('ageless');
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <div class="screen-header stagger-in">
+      <div class="screen-title">AGELESS SMALL GROUP TRAINING</div>
+      <div class="screen-subtitle-wrap"><span class="screen-subtitle">STRONGER FOR LIFE</span></div>
+    </div>
+    <div class="pt-flow-shell">
+      ${renderGuidedProgress(['TRAINING PLAN', 'PLAN DETAILS'], agelessStep)}
+      <div class="pt-stage" id="agelessStage"></div>
+    </div>
+  `;
+  renderAgelessStep();
+  document.getElementById('footerLegal').textContent = 'COACH-LED • SMALL GROUP TRAINING FOR ACTIVE ADULTS 50+';
+}
+
+function renderAgelessStep() {
+  const stage = document.getElementById('agelessStage');
+  const plans = BRANDS.ageless.tiles;
+  if (!stage) return;
+  if (agelessStep === 1) {
+    stage.innerHTML = `
+      <div class="pt-stage-heading"><h2>HOW WOULD YOU LIKE TO TRAIN?</h2><p>Start with a flexible pack or choose unlimited coaching and community.</p></div>
+      <div class="pt-choice-grid two-up">
+        ${plans.map(plan => `
+          <button class="pt-choice ${plan.featured ? 'recommended' : ''}" data-ageless-plan="${plan.id}" type="button">
+            <span class="pt-choice-kicker">${plan.featured ? 'BEST AT 3X+ PER WEEK' : 'FLEXIBLE START'}</span>
+            <span class="pt-choice-number price">${plan.priceDisplay}</span><span class="pt-choice-label">${plan.id === 'ag-ten' ? '10 SESSIONS' : 'BIWEEKLY'}</span>
+            <span class="pt-choice-description">${plan.id === 'ag-ten' ? 'Use ten coach-led group sessions at your pace.' : 'Train as often as once per calendar day.'}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="pt-start-over-row"><button class="pt-result-action" id="agelessReset" type="button">START OVER</button></div>
+    `;
+    stage.querySelectorAll('[data-ageless-plan]').forEach(button => {
+      button.addEventListener('click', () => {
+        selectedAgelessPlan = button.dataset.agelessPlan;
+        agelessStep = 2;
+        renderAgelessFlow();
+      });
+    });
+    document.getElementById('agelessReset').addEventListener('click', () => {
+      selectedAgelessPlan = null;
+      agelessStep = 1;
+      renderAgelessFlow();
+    });
+    document.getElementById('footerCta').textContent = 'STEP 1 OF 2 • CHOOSE YOUR AGELESS PLAN';
+    return;
+  }
+
+  const plan = plans.find(item => item.id === selectedAgelessPlan) || plans[0];
+  stage.innerHTML = `
+    <div class="pt-result-card">
+      <div class="pt-result-selection">${plan.name.replace(/\n/g, ' ')}</div>
+      <div class="pt-result-price">${plan.priceDisplay}</div>
+      <div class="pt-result-price-label">${plan.id === 'ag-ten' ? '10-SESSION PACK' : 'BILLED BIWEEKLY'}</div>
+      ${renderPlanNextStep()}
+      <div class="pt-result-details">
+        <div class="pt-result-detail"><strong>Coach-led</strong><span>Small group</span></div>
+        <div class="pt-result-detail"><strong>${plan.id === 'ag-ten' ? '$29.90' : 'Unlimited'}</strong><span>${plan.id === 'ag-ten' ? 'Per session' : 'Sessions'}</span></div>
+        <div class="pt-result-detail"><strong>50+</strong><span>Active adults</span></div>
+      </div>
+      ${renderResultBenefits(plan.full)}
+      <div class="pt-result-actions">
+        <button class="pt-result-action" id="agelessBack" type="button">← BACK TO PLANS</button>
+        <button class="pt-result-action" id="agelessStartOver" type="button">START OVER</button>
+      </div>
+    </div>
+  `;
+  ['agelessBack', 'agelessStartOver'].forEach(id => {
+    document.getElementById(id).addEventListener('click', () => {
+      selectedAgelessPlan = null;
+      agelessStep = 1;
+      renderAgelessFlow();
+    });
+  });
+  document.getElementById('footerCta').textContent = 'STEP 2 OF 2 • SEE THE FRONT DESK TO GET STARTED';
+}
+
+// ============ PERSONAL TRAINING GUIDED FLOW ============
+function formatPersonalTrainingPrice(value) {
+  return Number.isInteger(value) ? value.toFixed(0) : value.toFixed(2);
+}
+
+function personalTrainingProgress() {
+  const labels = ['FREQUENCY', 'SESSION LENGTH', 'WEEKLY PRICE'];
+  return labels.map((label, index) => {
+    const step = index + 1;
+    const stateClass = step === personalTrainingStep ? 'active' : (step < personalTrainingStep ? 'complete' : '');
+    return `<div class="pt-progress-step ${stateClass}"><span>${step < personalTrainingStep ? '✓' : step}</span>${label}</div>`;
+  }).join('');
+}
+
+function renderPersonalTrainingView() {
+  document.body.classList.remove('ageless', 'bigstretch');
+  const main = document.getElementById('main');
+  main.innerHTML = `
+    <div class="screen-header stagger-in">
+      <div class="screen-title">PERSONAL TRAINING</div>
+      <div class="screen-subtitle-wrap">
+        <span class="screen-subtitle">BUILD YOUR TRAINING PLAN</span>
+      </div>
+    </div>
+    <div class="pt-flow-shell">
+      <div class="pt-progress" id="ptProgress"></div>
+      <div class="pt-stage" id="ptStage"></div>
+    </div>
+  `;
+  renderPersonalTrainingStep();
+  document.getElementById('footerLegal').textContent = 'PERSONAL TRAINING MEMBERSHIPS • BILLED BIWEEKLY • 3-MONTH MINIMUM';
+}
+
+function renderPersonalTrainingStep() {
+  const progress = document.getElementById('ptProgress');
+  const stage = document.getElementById('ptStage');
+  if (!progress || !stage) return;
+  progress.innerHTML = personalTrainingProgress();
+
+  if (personalTrainingStep === 1) {
+    const descriptions = {
+      2: 'A strong rhythm for consistency, accountability, and steady progress.',
+      3: 'More coaching touchpoints to build momentum and accelerate results.',
+      4: 'Maximum weekly support for ambitious strength and fitness goals.'
+    };
+    stage.innerHTML = `
+      <div class="pt-stage-heading">
+        <h2>HOW OFTEN DO YOU WANT TO TRAIN?</h2>
+        <p>Choose the weekly schedule that matches your goals and availability.</p>
+      </div>
+      <div class="pt-choice-grid frequency">
+        ${PERSONAL_TRAINING_FREQUENCIES.map(frequency => `
+          <button class="pt-choice ${frequency === 3 ? 'recommended' : ''}" data-frequency="${frequency}" type="button">
+            <span class="pt-choice-kicker">${frequency === 3 ? 'MOST POPULAR' : 'TRAINING SCHEDULE'}</span>
+            <span class="pt-choice-number">${frequency}</span>
+            <span class="pt-choice-label">TIMES PER WEEK</span>
+            <span class="pt-choice-description">${descriptions[frequency]}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="pt-start-over-row"><button class="pt-result-action" id="ptResetFromFrequency" type="button">START OVER</button></div>
+    `;
+    stage.querySelectorAll('[data-frequency]').forEach(button => {
+      button.addEventListener('click', () => {
+        personalTrainingFrequency = Number(button.dataset.frequency);
+        personalTrainingStep = 2;
+        renderPersonalTrainingStep();
+      });
+    });
+    document.getElementById('ptResetFromFrequency').addEventListener('click', () => {
+      personalTrainingFrequency = null;
+      personalTrainingDuration = null;
+      personalTrainingStep = 1;
+      renderPersonalTrainingStep();
+    });
+    document.getElementById('footerCta').textContent = 'STEP 1 OF 3 • CHOOSE 2, 3, OR 4 TIMES PER WEEK';
+    return;
+  }
+
+  if (personalTrainingStep === 2) {
+    const descriptions = {
+      30: 'Focused coaching that fits a busy schedule. Strength, form, and accountability without wasted time.',
+      60: 'A complete one-on-one workout with more time for warm-up, strength, conditioning, and progression.'
+    };
+    stage.innerHTML = `
+      <div class="pt-stage-heading">
+        <h2>HOW LONG SHOULD EACH SESSION BE?</h2>
+        <p>You selected ${personalTrainingFrequency} times per week. Now choose your session length.</p>
+      </div>
+      <div class="pt-choice-grid duration">
+        ${PERSONAL_TRAINING_DURATIONS.map(duration => `
+          <button class="pt-choice ${duration === 30 ? 'recommended' : ''}" data-duration="${duration}" type="button">
+            <span class="pt-choice-kicker">${duration === 30 ? 'EFFICIENT & FOCUSED' : 'FULL WORKOUT'}</span>
+            <span class="pt-choice-number">${duration}</span>
+            <span class="pt-choice-label">MINUTE SESSIONS</span>
+            <span class="pt-choice-description">${descriptions[duration]}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="pt-result-actions">
+        <button class="pt-result-action" id="ptBackToFrequency" type="button">← BACK TO FREQUENCY</button>
+        <button class="pt-result-action" id="ptResetFromDuration" type="button">START OVER</button>
+      </div>
+    `;
+    stage.querySelectorAll('[data-duration]').forEach(button => {
+      button.addEventListener('click', () => {
+        personalTrainingDuration = Number(button.dataset.duration);
+        personalTrainingStep = 3;
+        renderPersonalTrainingStep();
+      });
+    });
+    document.getElementById('ptBackToFrequency').addEventListener('click', () => {
+      personalTrainingStep = 1;
+      renderPersonalTrainingStep();
+    });
+    document.getElementById('ptResetFromDuration').addEventListener('click', () => {
+      personalTrainingFrequency = null;
+      personalTrainingDuration = null;
+      personalTrainingStep = 1;
+      renderPersonalTrainingStep();
+    });
+    document.getElementById('footerCta').textContent = 'STEP 2 OF 3 • CHOOSE 30 OR 60 MINUTES';
+    return;
+  }
+
+  const rate = PERSONAL_TRAINING_RATES[personalTrainingDuration];
+  const weeklyPrice = rate.weeklySessionRate * personalTrainingFrequency;
+  const biweeklyPrice = rate.biweeklyBase * personalTrainingFrequency;
+  const billingCycleSessions = personalTrainingFrequency * 2;
+  stage.innerHTML = `
+    <div class="pt-result-card">
+      <div class="pt-result-selection">${personalTrainingFrequency} TIMES PER WEEK • ${personalTrainingDuration}-MINUTE SESSIONS</div>
+      <div class="pt-result-price">$${formatPersonalTrainingPrice(weeklyPrice)}</div>
+      <div class="pt-result-price-label">PER WEEK</div>
+      ${renderPlanNextStep()}
+      <div class="pt-result-details">
+        <div class="pt-result-detail">
+          <strong>$${formatPersonalTrainingPrice(rate.weeklySessionRate)}</strong>
+          <span>Per session</span>
+        </div>
+        <div class="pt-result-detail">
+          <strong>$${formatPersonalTrainingPrice(biweeklyPrice)}</strong>
+          <span>Billed biweekly</span>
+        </div>
+        <div class="pt-result-detail">
+          <strong>${billingCycleSessions} sessions</strong>
+          <span>Every 2 weeks</span>
+        </div>
+      </div>
+      <div class="pt-result-note">Personal training memberships have a 3-month minimum. Weekly price is the biweekly membership divided into a simple weekly equivalent.</div>
+      <div class="pt-downsell">
+        <div class="pt-downsell-title">NEED A MORE FLEXIBLE START?</div>
+        <div class="pt-downsell-subtitle">Keep these front-desk downsell options available without changing the recommended membership.</div>
+        <div class="pt-downsell-options">
+          <div class="pt-downsell-option"><strong>ONE ${personalTrainingDuration}-MINUTE SESSION • $${PERSONAL_TRAINING_SINGLE_PRICES[personalTrainingDuration]}</strong>No recurring commitment</div>
+          <div class="pt-downsell-option"><strong>6-PACK COACHING OPTION</strong>See the front desk for the current verified price</div>
+        </div>
+      </div>
+      <div class="pt-result-actions">
+        <button class="pt-result-action" id="ptChangeLength" type="button">← CHANGE SESSION LENGTH</button>
+        <button class="pt-result-action" id="ptStartOver" type="button">START OVER</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('ptChangeLength').addEventListener('click', () => {
+    personalTrainingStep = 2;
+    renderPersonalTrainingStep();
+  });
+  document.getElementById('ptStartOver').addEventListener('click', () => {
+    personalTrainingFrequency = null;
+    personalTrainingDuration = null;
+    personalTrainingStep = 1;
+    renderPersonalTrainingStep();
+  });
+  document.getElementById('footerCta').textContent = 'STEP 3 OF 3 • SEE THE FRONT DESK TO GET STARTED';
+}
+
 // ============ INLINE TILE EXPANSION ============
 function openTileExpansion(brandKey, subKey, tileId) {
   const brand = BRANDS[brandKey];
@@ -2501,7 +3640,6 @@ function closeExpansion(el) {
 // ============ BUILDER VIEW ============
 function renderBuilderView() {
   document.body.classList.remove('ageless', 'bigstretch');
-
   const main = document.getElementById('main');
   main.innerHTML = `
     <div class="screen-header stagger-in">
@@ -2510,156 +3648,134 @@ function renderBuilderView() {
         <span class="screen-subtitle">BUNDLE 2+ • SAVE 10% AUTOMATICALLY</span>
       </div>
     </div>
-    <div class="builder">
-      <div class="builder-options" id="builderOptions"></div>
-      <div class="builder-summary">
-        <div class="summary-header">YOUR PLAN</div>
-        <div class="summary-sub">SELECT OPTIONS TO BUILD YOUR TOTAL</div>
-        <div class="summary-items" id="summaryItems"></div>
-        <div class="summary-totals" id="summaryTotals"></div>
-        <button class="builder-cta" id="builderCta" disabled>
-          <div class="builder-cta-title">SEE FRONT DESK TO BOOK</div>
-          <div class="builder-cta-sub">We'll set you up in 5 minutes</div>
-        </button>
-        <button class="builder-reset" id="builderReset">RESET SELECTIONS</button>
-      </div>
+    <div class="pt-flow-shell">
+      ${renderGuidedProgress(['CHOOSE SERVICES', 'REVIEW PLAN'], builderStep < Object.keys(BUILDER_OPTIONS).length ? 1 : 2)}
+      <div class="pt-stage" id="builderOptions"></div>
     </div>
   `;
-
   renderBuilderOptions();
-  renderBuilderSummary();
-
-  document.getElementById('builderReset').addEventListener('click', () => {
-    Object.keys(selections).forEach(k => delete selections[k]);
-    renderBuilderOptions();
-    renderBuilderSummary();
-  });
-
   document.getElementById('footerLegal').textContent = 'BUNDLE 2+ SERVICES • SAVE 10% AUTOMATICALLY';
-  document.getElementById('footerCta').textContent = 'TAP OPTIONS TO ADD OR REMOVE';
 }
 
 function renderBuilderOptions() {
   const container = document.getElementById('builderOptions');
-  container.innerHTML = Object.entries(BUILDER_OPTIONS).map(([sectionKey, section]) => {
-    const gridClass = section.options.length === 4 ? 'four-col' : (section.options.length === 2 ? 'two-col' : '');
-    return `
-      <div class="builder-section">
-        <div class="builder-section-header">
-          <div class="builder-section-title">${section.title}</div>
-          <div class="builder-section-sub">${section.sub}</div>
-        </div>
-        <div class="builder-grid ${gridClass}">
-          ${section.options.map(opt => {
-            const isSelected = selections[sectionKey] === opt.id;
-            const cadenceLabel = opt.type === 'recurring' ? 'BIWEEKLY' : 'ONE-TIME';
-            return `
-              <div class="builder-option ${isSelected ? 'selected' : ''}" data-section="${sectionKey}" data-option="${opt.id}">
-                <div class="builder-option-brand">${opt.brand}</div>
-                <div class="builder-option-name">${opt.name}</div>
-                <div class="builder-option-price">$${opt.price}</div>
-                <div class="builder-option-cadence">${cadenceLabel} • ${opt.desc}</div>
-              </div>
-            `;
-          }).join('')}
-        </div>
-      </div>
-    `;
-  }).join('');
+  const entries = Object.entries(BUILDER_OPTIONS);
+  if (builderStep >= entries.length) {
+    renderBuilderSummary();
+    return;
+  }
 
-  container.querySelectorAll('.builder-option').forEach(el => {
-    el.addEventListener('click', () => {
-      const section = el.dataset.section;
-      const optionId = el.dataset.option;
-      if (selections[section] === optionId) {
-        delete selections[section];
-      } else {
-        selections[section] = optionId;
-      }
+  const [sectionKey, section] = entries[builderStep];
+  const gridClass = section.options.length >= 4 ? 'two-up' : (section.options.length === 3 ? 'three-up' : 'two-up');
+  container.innerHTML = `
+    <div class="pt-stage-heading">
+      <h2>${section.title}</h2>
+      <p>CATEGORY ${builderStep + 1} OF ${entries.length} • ${section.sub}. Choose one option or skip this category.</p>
+    </div>
+    <div class="pt-choice-grid ${gridClass}">
+      ${section.options.map(option => {
+        const selected = selections[sectionKey] === option.id;
+        const cadence = option.type === 'recurring' ? 'BIWEEKLY' : 'ONE-TIME';
+        return `
+          <button class="pt-choice ${selected ? 'recommended' : ''}" data-builder-option="${option.id}" type="button">
+            <span class="pt-choice-kicker">${selected ? 'SELECTED' : option.brand}</span>
+            <span class="pt-choice-number price">$${option.price}</span>
+            <span class="pt-choice-label">${cadence}</span>
+            <span class="pt-choice-description">${option.name}. ${option.desc}</span>
+          </button>
+        `;
+      }).join('')}
+    </div>
+    <div class="pt-result-actions">
+      ${builderStep > 0 ? '<button class="pt-result-action" id="builderBack" type="button">← BACK</button>' : ''}
+      <button class="pt-result-action" id="builderSkip" type="button">SKIP THIS CATEGORY</button>
+      <button class="pt-result-action primary" id="builderNext" type="button">NEXT →</button>
+      <button class="pt-result-action" id="builderReset" type="button">START OVER</button>
+    </div>
+  `;
+
+  container.querySelectorAll('[data-builder-option]').forEach(button => {
+    button.addEventListener('click', () => {
+      const optionId = button.dataset.builderOption;
+      if (selections[sectionKey] === optionId) delete selections[sectionKey];
+      else selections[sectionKey] = optionId;
       renderBuilderOptions();
-      renderBuilderSummary();
     });
   });
+  const back = document.getElementById('builderBack');
+  if (back) back.addEventListener('click', () => {
+    builderStep = Math.max(0, builderStep - 1);
+    renderBuilderView();
+  });
+  document.getElementById('builderSkip').addEventListener('click', () => {
+    delete selections[sectionKey];
+    builderStep += 1;
+    renderBuilderView();
+  });
+  document.getElementById('builderNext').addEventListener('click', () => {
+    builderStep += 1;
+    renderBuilderView();
+  });
+  document.getElementById('builderReset').addEventListener('click', () => {
+    Object.keys(selections).forEach(key => delete selections[key]);
+    builderStep = 0;
+    renderBuilderView();
+  });
+  document.getElementById('footerCta').textContent = `CATEGORY ${builderStep + 1} OF ${entries.length} • CHOOSE, SKIP, OR CONTINUE`;
 }
 
 function renderBuilderSummary() {
-  const items = document.getElementById('summaryItems');
-  const totals = document.getElementById('summaryTotals');
-  const cta = document.getElementById('builderCta');
-
+  const container = document.getElementById('builderOptions');
   const selectedItems = Object.entries(selections).map(([sectionKey, optionId]) => {
     const section = BUILDER_OPTIONS[sectionKey];
     const opt = section.options.find(o => o.id === optionId);
     return { ...opt, sectionKey };
   });
-
-  if (selectedItems.length === 0) {
-    items.innerHTML = `
-      <div class="summary-empty">
-        <div class="icon">+</div>
-        Tap any option on the left to start building your plan. Combine 2 or more services for an automatic 10% discount.
-      </div>
-    `;
-    totals.innerHTML = '';
-    cta.disabled = true;
-    return;
-  }
-
-  items.innerHTML = selectedItems.map(item => `
-    <div class="summary-item">
-      <div>
-        <div class="summary-item-brand">${item.brand}</div>
-        <div class="summary-item-name">${item.name}</div>
-        ${item.type === 'onetime' ? '<div class="summary-item-type">one-time</div>' : ''}
-      </div>
-      <div class="summary-item-price">$${item.price.toFixed(2)}</div>
-    </div>
-  `).join('');
-
   const recurring = selectedItems.filter(i => i.type === 'recurring');
   const onetime = selectedItems.filter(i => i.type === 'onetime');
-
   const recurringSubtotal = recurring.reduce((sum, i) => sum + i.price, 0);
   const onetimeSubtotal = onetime.reduce((sum, i) => sum + i.price, 0);
-
   const hasBundle = selectedItems.length >= 2;
   const recurringDiscount = hasBundle ? recurringSubtotal * 0.10 : 0;
   const onetimeDiscount = hasBundle ? onetimeSubtotal * 0.10 : 0;
   const totalDiscount = recurringDiscount + onetimeDiscount;
-
   const biweeklyTotal = recurringSubtotal - recurringDiscount;
   const onetimeTotal = onetimeSubtotal - onetimeDiscount;
+  const primaryTotal = recurring.length ? biweeklyTotal : onetimeTotal;
+  const primaryLabel = recurring.length ? 'BIWEEKLY TOTAL' : 'ONE-TIME TOTAL';
+  const summaryItems = selectedItems.length
+    ? selectedItems.map(item => `${item.brand} • ${item.name} • $${item.price.toFixed(2)} ${item.type === 'recurring' ? 'biweekly' : 'one-time'}`)
+    : ['No services selected yet. Go back to add a plan.'];
 
-  let totalsHtml = '';
-  if (hasBundle && totalDiscount > 0) {
-    totalsHtml += `
-      <div class="summary-discount">
-        <div class="summary-discount-label">BUNDLE DISCOUNT • 10% OFF</div>
-        <div class="summary-discount-amount">-$${totalDiscount.toFixed(2)}</div>
+  container.innerHTML = `
+    <div class="pt-result-card">
+      <div class="pt-result-selection">YOUR COMPLETE PLAN</div>
+      <div class="pt-result-price">$${primaryTotal.toFixed(2)}</div>
+      <div class="pt-result-price-label">${primaryLabel}</div>
+      ${selectedItems.length ? renderPlanNextStep('book') : ''}
+      <div class="pt-result-details">
+        <div class="pt-result-detail"><strong>${selectedItems.length}</strong><span>Selected services</span></div>
+        <div class="pt-result-detail"><strong>${hasBundle ? '10% off' : 'Add 2+ to save'}</strong><span>Bundle savings</span></div>
+        <div class="pt-result-detail"><strong>$${totalDiscount.toFixed(2)}</strong><span>Total discount</span></div>
       </div>
-    `;
-  }
-
-  if (recurring.length > 0) {
-    totalsHtml += `
-      <div class="total-row biweekly">
-        <div class="total-label">BIWEEKLY</div>
-        <div class="total-value" id="biweeklyTotal">$${biweeklyTotal.toFixed(2)}</div>
+      ${renderResultBenefits(summaryItems)}
+      ${recurring.length && onetime.length ? `<div class="pt-result-note">Your recurring total is $${biweeklyTotal.toFixed(2)} biweekly. Your one-time total today is $${onetimeTotal.toFixed(2)}.</div>` : ''}
+      <div class="pt-result-actions">
+        <button class="pt-result-action" id="builderSummaryBack" type="button">← BACK TO OPTIONS</button>
+        <button class="pt-result-action" id="builderSummaryReset" type="button">START OVER</button>
       </div>
-    `;
-  }
-
-  if (onetime.length > 0) {
-    totalsHtml += `
-      <div class="total-row one-time">
-        <div class="total-label">ONE-TIME TODAY</div>
-        <div class="total-value">$${onetimeTotal.toFixed(2)}</div>
-      </div>
-    `;
-  }
-
-  totals.innerHTML = totalsHtml;
-  cta.disabled = false;
+    </div>
+  `;
+  document.getElementById('builderSummaryBack').addEventListener('click', () => {
+    builderStep = Math.max(0, Object.keys(BUILDER_OPTIONS).length - 1);
+    renderBuilderView();
+  });
+  document.getElementById('builderSummaryReset').addEventListener('click', () => {
+    Object.keys(selections).forEach(key => delete selections[key]);
+    builderStep = 0;
+    renderBuilderView();
+  });
+  document.getElementById('footerCta').textContent = 'REVIEW YOUR TOTAL • SEE THE FRONT DESK TO BOOK';
 }
 
 // ============ TAB SWITCHING ============
@@ -2669,13 +3785,45 @@ document.querySelectorAll('.tab').forEach(t => {
     t.classList.add('active');
     currentBrand = t.dataset.brand;
 
+    if (currentBrand === 'anytime') {
+      if (currentSubTab === 'memberships') {
+        membershipStep = 1;
+        selectedMembership = null;
+      } else if (currentSubTab === 'personalTraining') {
+        personalTrainingStep = 1;
+        personalTrainingFrequency = null;
+        personalTrainingDuration = null;
+      } else if (currentSubTab === 'stretching') {
+        stretchStep = 1;
+        stretchDuration = null;
+        stretchPlan = null;
+      }
+    } else if (currentBrand === 'bigstretch') {
+      bigStretchStep = 1;
+      bigStretchFrequency = null;
+      bigStretchDuration = null;
+    } else if (currentBrand === 'ageless') {
+      agelessStep = 1;
+      selectedAgelessPlan = null;
+    } else if (currentBrand === 'build') {
+      builderStep = 0;
+    }
+
     const subTabs = document.getElementById('subTabs');
     if (currentBrand === 'anytime') {
       subTabs.classList.add('visible');
-      renderBrandView('anytime', currentSubTab);
+      if (currentSubTab === 'personalTraining') renderPersonalTrainingView();
+      else if (currentSubTab === 'stretching') renderStretchFlow('anytime');
+      else renderMembershipFlow();
     } else if (currentBrand === 'build') {
       subTabs.classList.remove('visible');
       renderBuilderView();
+    } else if (currentBrand === 'bigstretch') {
+      subTabs.classList.remove('visible');
+      renderBigStretchFlow();
+    } else if (currentBrand === 'ageless') {
+      subTabs.classList.remove('visible');
+      renderAgelessFlow();
     } else {
       subTabs.classList.remove('visible');
       renderBrandView(currentBrand);
@@ -2689,7 +3837,21 @@ document.querySelectorAll('.sub-tab').forEach(t => {
     t.classList.add('active');
     currentSubTab = t.dataset.sub;
     if (currentBrand === 'anytime') {
-      renderBrandView('anytime', currentSubTab);
+      if (currentSubTab === 'personalTraining') {
+        personalTrainingStep = 1;
+        personalTrainingFrequency = null;
+        personalTrainingDuration = null;
+        renderPersonalTrainingView();
+      } else if (currentSubTab === 'stretching') {
+        stretchStep = 1;
+        stretchDuration = null;
+        stretchPlan = null;
+        renderStretchFlow('anytime');
+      } else {
+        membershipStep = 1;
+        selectedMembership = null;
+        renderMembershipFlow();
+      }
     }
   });
 });
@@ -2708,7 +3870,7 @@ setInterval(updateClock, 30000);
 
 // INITIAL RENDER
 document.getElementById('subTabs').classList.add('visible');
-renderBrandView('anytime', 'memberships');
+renderMembershipFlow();
 resetIdleTimer();
 
 </script>
